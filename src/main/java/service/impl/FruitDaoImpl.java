@@ -6,23 +6,37 @@ import service.FruitDao;
 public class FruitDaoImpl implements FruitDao {
     @Override
     public FruitTransaction getFromCsvData(String line) {
-        if (line == null) {
-            throw new RuntimeException(
-                    "Line cannot be null");
+        if (line == null || line.isEmpty()) {
+            throw new RuntimeException("Line cannot be null or empty");
         }
+
         String[] fields = line.split(",");
         if (fields.length != 3) {
-            throw new RuntimeException(
-                    "Array length can be more or less than 3!");
+            throw new RuntimeException("Invalid CSV line (expected 3 fields): '" + line + "'");
         }
+
         FruitTransaction fruitTransaction = new FruitTransaction();
-        fruitTransaction.setOperation(FruitTransaction.Operation.fromCode(fields[0]));
-        fruitTransaction.setFruit(fields[1]);
-        if (Integer.parseInt(fields[2]) < 0) {
-            throw new RuntimeException(
-                    "Quantity cannot be negative " + fields[2]);
+
+        try {
+            fruitTransaction.setOperation(FruitTransaction.Operation.fromCode(fields[0]));
+        } catch (Exception e) {
+            throw new RuntimeException("Invalid operation code in line: '" + line + "'", e);
         }
-        fruitTransaction.setQuantity(Integer.parseInt(fields[2]));
+
+        fruitTransaction.setFruit(fields[1]);
+
+        int quantity;
+        try {
+            quantity = Integer.parseInt(fields[2]);
+        } catch (NumberFormatException e) {
+            throw new RuntimeException("Invalid quantity in line: '" + line + "'", e);
+        }
+
+        if (quantity < 0) {
+            throw new RuntimeException("Quantity cannot be negative in line: '" + line + "'");
+        }
+
+        fruitTransaction.setQuantity(quantity);
         return fruitTransaction;
     }
 }

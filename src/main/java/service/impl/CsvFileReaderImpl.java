@@ -42,7 +42,7 @@ public class CsvFileReaderImpl implements CsvFileReader {
                 transactions.add(fruitTransaction);
             }
         } catch (IOException e) {
-            throw new RuntimeException("IOException " + e);
+            throw new RuntimeException("Error reading file: " + filePath, e);
         }
         return transactions;
     }
