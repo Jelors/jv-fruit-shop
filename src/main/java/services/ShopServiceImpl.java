@@ -1,12 +1,11 @@
 package services;
 
-import models.ShopService;
-import storage.Storage;
-import models.OperationStrategy;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import models.OperationStrategy;
+import models.ShopService;
+import storage.Storage;
 
 public class ShopServiceImpl implements ShopService {
     private OperationStrategy operationStrategy;

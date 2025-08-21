@@ -1,11 +1,11 @@
-package handler.impl;
+package handler;
 
 import models.OperationHandler;
 import services.FruitTransaction;
 
-public class PurchaseOperation implements OperationHandler {
+public class BalanceOperation implements OperationHandler {
     @Override
     public int getOperation(FruitTransaction data, int amount) {
-        return amount - data.getQuantity();
+        return data.getQuantity();
     }
 }

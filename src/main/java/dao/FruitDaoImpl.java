@@ -1,4 +1,4 @@
-package dao.impl;
+package dao;
 
 import models.FruitDao;
 import services.FruitTransaction;

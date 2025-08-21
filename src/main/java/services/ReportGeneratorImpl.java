@@ -1,10 +1,9 @@
 package services;
 
-import models.ReportGenerator;
-import storage.Storage;
-
 import java.util.Map;
 import java.util.StringJoiner;
+import models.ReportGenerator;
+import storage.Storage;
 
 public class ReportGeneratorImpl implements ReportGenerator {
 

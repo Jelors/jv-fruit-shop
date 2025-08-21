@@ -1,3 +1,33 @@
+/*
+    Привіт! Це завдання є першим таким організаційним моїм квестом, тому тут скоріше за все досить багато
+    помилок, як би я не старався це упорядкувати (саме тому я тут пишу зараз). \\
+
+     Запитання: чи потрібно та, чи радше доцільно виносити всі інтерфейси в окрему папку, чи все ж краще
+        лишати кожен окремий інтерфейс з реалізованим класом імплементації.
+
+        Папка "file" спочатку мала назву на подобі workWithFile і ділилась на fromFile та toFile
+            (читання та запис відповідно), так не найкраще найменування, але навіть його довелось змінити через
+                лінтер, тому зараз так жахливо виглядає (file.To та file.From). (sorry)
+
+        Реалізував завдання цілком як міг, при цьому, не оброблено багато помилок та вийнятків які можуть траплятись;
+            наскільки розумію це вже в іншому завданні, тому так.
+
+        Дякую за увагу :)
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 package core.basesyntax;
 
 import dao.impl.FruitDaoImpl;
@@ -6,7 +36,6 @@ import models.ReportGenerator;
 import models.ShopService;
 import services.ReportGeneratorImpl;
 import services.ShopServiceImpl;
-import storage.Storage;
 import models.CsvFileReader;
 import workWithFile.fromFile.impl.CsvFileReaderImpl;
 import handler.impl.BalanceOperation;
@@ -45,3 +74,4 @@ public class Main {
         fileWriter.write(resultingReport, "finalReport.csv");
     }
 }
+*/

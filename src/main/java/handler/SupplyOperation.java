@@ -1,4 +1,4 @@
-package handler.impl;
+package handler;
 
 import models.OperationHandler;
 import services.FruitTransaction;

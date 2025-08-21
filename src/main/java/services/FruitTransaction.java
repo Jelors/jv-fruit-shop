@@ -40,11 +40,11 @@ public class FruitTransaction {
 
     @Override
     public String toString() {
-        return "FruitTransaction{" +
-                "operation=" + operation +
-                ", fruit='" + fruit + '\'' +
-                ", quantity=" + quantity +
-                '}';
+        return "FruitTransaction{"
+                + "operation=" + operation
+                + ", fruit='" + fruit + '\''
+                + ", quantity=" + quantity
+                + '}';
     }
 
     public enum Operation {
@@ -58,6 +58,7 @@ public class FruitTransaction {
         Operation(String inputOperation) {
             this.inputOperation = inputOperation;
         }
+
         public static Operation fromCode(String code) {
             for (Operation op : Operation.values()) {
                 if (op.getInputOperation().equals(code)) {

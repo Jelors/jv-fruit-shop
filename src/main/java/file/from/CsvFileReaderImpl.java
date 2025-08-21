@@ -1,14 +1,13 @@
-package workWithFile.fromFile.impl;
-
-import models.FruitDao;
-import services.FruitTransaction;
-import models.CsvFileReader;
+package file.from;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import models.CsvFileReader;
+import models.FruitDao;
+import services.FruitTransaction;
 
 public class CsvFileReaderImpl implements CsvFileReader {
     private FruitDao fruitDao;
