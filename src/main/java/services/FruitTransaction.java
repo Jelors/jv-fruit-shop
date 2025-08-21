@@ -1,9 +1,18 @@
-package model;
+package services;
 
 public class FruitTransaction {
     private Operation operation;
     private String fruit;
     private int quantity;
+
+    public FruitTransaction(Operation operation, String fruit, int quantity) {
+        this.operation = operation;
+        this.fruit = fruit;
+        this.quantity = quantity;
+    }
+
+    public FruitTransaction() {
+    }
 
     public Operation getOperation() {
         return operation;
@@ -29,6 +38,15 @@ public class FruitTransaction {
         this.quantity = quantity;
     }
 
+    @Override
+    public String toString() {
+        return "FruitTransaction{" +
+                "operation=" + operation +
+                ", fruit='" + fruit + '\'' +
+                ", quantity=" + quantity +
+                '}';
+    }
+
     public enum Operation {
         BALANCE("b"),
         SUPPLY("s"),
@@ -39,6 +57,14 @@ public class FruitTransaction {
 
         Operation(String inputOperation) {
             this.inputOperation = inputOperation;
+        }
+        public static Operation fromCode(String code) {
+            for (Operation op : Operation.values()) {
+                if (op.getInputOperation().equals(code)) {
+                    return op;
+                }
+            }
+            throw new IllegalArgumentException("Unknown operation code " + code);
         }
 
         public String getInputOperation() {

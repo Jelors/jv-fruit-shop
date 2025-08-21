@@ -1,6 +1,6 @@
-package handler;
+package models;
 
-import model.FruitTransaction;
+import services.FruitTransaction;
 
 public interface OperationHandler {
     int getOperation(FruitTransaction data, int amount);

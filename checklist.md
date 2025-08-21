@@ -20,7 +20,7 @@ purpose/common logic in a corresponding package.
 
 Your project structure should consist the following packages:
 - `db` for holding Storage
-- `model` for holding models like Fruit (if necessary)
+- `services` for holding models like Fruit (if necessary)
 - `service` for holding services, like Writer, Reader, Parser and so on
 - `service.impl` for holding implementations of services
 - `strategy` for holding handlers for different operations (you are expected to apply Strategy pattern)
@@ -36,7 +36,7 @@ Let's rethrow a RuntimeException with an **informative** message and exception o
 - Good:   
     ```java
         } catch (FileNotFoundException e) {
-            throw new RuntimeException("Can't find file by path: " + filePath, e);
+            throw new RuntimeException("Can't find workWithFile by path: " + filePath, e);
         }
     ```
   
@@ -59,7 +59,7 @@ the most suitable for your needs.
     ```java
     public class ReaderServiceImpl implements ReaderService {
        public List<String> readFromFile() {
-          File file = new File("src/main/resources/file.txt");
+          File workWithFile = new File("src/main/resources/workWithFile.txt");
           ...
        }
     }
@@ -68,7 +68,7 @@ the most suitable for your needs.
     ```java
     public class ReaderServiceImpl implements ReaderService {
        public List<String> readFromFile(String filePath) {
-          File file = new File(filePath);
+          File workWithFile = new File(filePath);
           ...
        }
     }
@@ -79,12 +79,12 @@ Please provide the relative path to a resource instead.
  
 - Bad:  
     ```java
-    readerService.readFromFile("C:/Users/.../my-project/src/main/resources/file.txt");
+    readerService.readFromFile("C:/Users/.../my-project/src/main/resources/workWithFile.txt");
     ```  
     
 - Good:  
     ```java
-    readerService.readFromFile("src/main/resources/file.txt");
+    readerService.readFromFile("src/main/resources/workWithFile.txt");
     ```
       
 #### Avoid using switch-cases and if-else constructions. It is recommended to use the Strategy pattern instead. 

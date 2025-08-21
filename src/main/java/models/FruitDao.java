@@ -1,6 +1,6 @@
-package dao;
+package models;
 
-import model.FruitTransaction;
+import services.FruitTransaction;
 
 public interface FruitDao {
     FruitTransaction getFromCsvData(String line);

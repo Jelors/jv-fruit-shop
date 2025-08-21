@@ -1,6 +1,7 @@
-package handler;
+package handler.impl;
 
-import model.FruitTransaction;
+import models.OperationHandler;
+import services.FruitTransaction;
 
 public class SupplyOperation implements OperationHandler {
     @Override
