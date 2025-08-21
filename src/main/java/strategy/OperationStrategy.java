@@ -1,6 +1,6 @@
-package models;
+package strategy;
 
-import services.FruitTransaction;
+import model.FruitTransaction;
 
 public interface OperationStrategy {
     OperationHandler getOperation(FruitTransaction.Operation type);

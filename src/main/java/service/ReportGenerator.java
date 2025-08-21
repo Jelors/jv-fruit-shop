@@ -1,4 +1,4 @@
-package models;
+package service;
 
 public interface ReportGenerator {
     String getReport();

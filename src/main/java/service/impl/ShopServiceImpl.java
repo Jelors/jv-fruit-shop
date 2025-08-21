@@ -1,11 +1,12 @@
-package services;
+package service.impl;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import models.OperationStrategy;
-import models.ShopService;
+import model.FruitTransaction;
+import service.ShopService;
 import storage.Storage;
+import strategy.OperationStrategy;
 
 public class ShopServiceImpl implements ShopService {
     private OperationStrategy operationStrategy;
@@ -16,6 +17,16 @@ public class ShopServiceImpl implements ShopService {
 
     @Override
     public void process(List<FruitTransaction> fruitTransactionList) {
+        if (fruitTransactionList == null) {
+            throw new RuntimeException(
+                    "FruitTransactionList cannot be null");
+        }
+        for (FruitTransaction fruitTransaction : fruitTransactionList) {
+            if (fruitTransaction == null) {
+                throw new RuntimeException(
+                        "FruitTransaction object cannot be null");
+            }
+        }
         Map<String, Integer> fruitStock = new HashMap<>();
 
         for (FruitTransaction fruitTransaction : fruitTransactionList) {
@@ -25,6 +36,6 @@ public class ShopServiceImpl implements ShopService {
             int updatedAmount = operationStrategy.applyOperation(fruitTransaction, currentAmount);
             fruitStock.put(fruitName, updatedAmount);
         }
-        Storage.fruitDbResult.putAll(fruitStock);
+        Storage.getFruitDbResult().putAll(fruitStock);
     }
 }

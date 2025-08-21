@@ -1,7 +1,7 @@
-package models;
+package service;
 
 import java.util.List;
-import services.FruitTransaction;
+import model.FruitTransaction;
 
 public interface CsvFileReader {
     List<FruitTransaction> read(String filePath);

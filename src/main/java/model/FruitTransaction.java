@@ -1,4 +1,4 @@
-package services;
+package model;
 
 public class FruitTransaction {
     private Operation operation;
@@ -65,7 +65,7 @@ public class FruitTransaction {
                     return op;
                 }
             }
-            throw new IllegalArgumentException("Unknown operation code " + code);
+            throw new RuntimeException("Unknown operation code " + code);
         }
 
         public String getInputOperation() {

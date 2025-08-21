@@ -1,15 +1,15 @@
-package services;
+package service.impl;
 
 import java.util.Map;
 import java.util.StringJoiner;
-import models.ReportGenerator;
+import service.ReportGenerator;
 import storage.Storage;
 
 public class ReportGeneratorImpl implements ReportGenerator {
 
     @Override
     public String getReport() {
-        Map<String, Integer> fruitBalance = Storage.fruitDbResult;
+        Map<String, Integer> fruitBalance = Storage.getFruitDbResult();
 
         StringJoiner reportBuilder = new StringJoiner(System.lineSeparator());
         reportBuilder.add("fruit,quantity");

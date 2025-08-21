@@ -20,47 +20,35 @@
         Дякую за увагу :)
  */
 
-
-
-
-
-
-
-
-
-
-
-
-
-/*
 package core.basesyntax;
-
-import dao.impl.FruitDaoImpl;
-import models.CsvFileWriter;
-import models.ReportGenerator;
-import models.ShopService;
-import services.ReportGeneratorImpl;
-import services.ShopServiceImpl;
-import models.CsvFileReader;
-import workWithFile.fromFile.impl.CsvFileReaderImpl;
-import handler.impl.BalanceOperation;
-import models.OperationHandler;
-import handler.impl.PurchaseOperation;
-import handler.impl.ReturnOperation;
-import handler.impl.SupplyOperation;
-import services.FruitTransaction;
-import models.OperationStrategy;
-import strategy.impl.OperationStrategyImpl;
-import workWithFile.toFile.impl.CsvFileWriterImpl;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import model.FruitTransaction;
+import service.CsvFileReader;
+import service.CsvFileWriter;
+import service.ReportGenerator;
+import service.ShopService;
+import service.impl.CsvFileReaderImpl;
+import service.impl.CsvFileWriterImpl;
+import service.impl.FruitDaoImpl;
+import service.impl.ReportGeneratorImpl;
+import service.impl.ShopServiceImpl;
+import strategy.OperationHandler;
+import strategy.OperationStrategy;
+import strategy.impl.BalanceOperation;
+import strategy.impl.OperationStrategyImpl;
+import strategy.impl.PurchaseOperation;
+import strategy.impl.ReturnOperation;
+import strategy.impl.SupplyOperation;
 
 public class Main {
+    private static final String inputPath = "src/main/resources/input.csv";
+    private static final String reportPath = "src/main/resources/finalReport.csv";
+
     public static void main(String[] args) {
         CsvFileReader reader = new CsvFileReaderImpl(new FruitDaoImpl());
-        List<FruitTransaction> transactions = reader.read("input.csv");
 
         Map<FruitTransaction.Operation, OperationHandler> operationHandlers = new HashMap<>();
         operationHandlers.put(FruitTransaction.Operation.BALANCE, new BalanceOperation());
@@ -69,6 +57,7 @@ public class Main {
         operationHandlers.put(FruitTransaction.Operation.SUPPLY, new SupplyOperation());
         OperationStrategy operationStrategy = new OperationStrategyImpl(operationHandlers);
 
+        List<FruitTransaction> transactions = reader.read(inputPath);
         ShopService shopService = new ShopServiceImpl(operationStrategy);
         shopService.process(transactions);
 
@@ -76,7 +65,7 @@ public class Main {
         String resultingReport = reportGenerator.getReport();
 
         CsvFileWriter fileWriter = new CsvFileWriterImpl();
-        fileWriter.write(resultingReport, "finalReport.csv");
+        fileWriter.write(resultingReport, reportPath);
     }
 }
-*/
+

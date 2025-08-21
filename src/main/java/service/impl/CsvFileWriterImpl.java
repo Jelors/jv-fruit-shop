@@ -1,9 +1,9 @@
-package file.to;
+package service.impl;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import models.CsvFileWriter;
+import service.CsvFileWriter;
 
 public class CsvFileWriterImpl implements CsvFileWriter {
     @Override
