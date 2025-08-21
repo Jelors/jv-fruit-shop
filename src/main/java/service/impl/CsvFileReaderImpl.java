@@ -10,14 +10,9 @@ import service.CsvFileReader;
 import service.FruitDao;
 
 public class CsvFileReaderImpl implements CsvFileReader {
-    private FruitDao fruitDao;
-
-    public CsvFileReaderImpl(FruitDao fruitDao) {
-        this.fruitDao = fruitDao;
-    }
 
     @Override
-    public List<FruitTransaction> read(String filePath) {
+    public List<FruitTransaction> read(String filePath, FruitDao fruitDao) {
         if (filePath == null) {
             throw new RuntimeException(
                     "Path to file cannot be null");
@@ -37,9 +32,7 @@ public class CsvFileReaderImpl implements CsvFileReader {
                     isFirstLine = false;
                     continue;
                 }
-
-                FruitTransaction fruitTransaction = fruitDao.getFromCsvData(line);
-                transactions.add(fruitTransaction);
+                transactions.add(fruitDao.getFromCsvData(line));
             }
         } catch (IOException e) {
             throw new RuntimeException("Error reading file: " + filePath, e);

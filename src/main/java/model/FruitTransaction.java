@@ -53,27 +53,23 @@ public class FruitTransaction {
         PURCHASE("p"),
         RETURN("r");
 
-        private String inputOperation;
+        private String code;
 
         Operation(String inputOperation) {
-            this.inputOperation = inputOperation;
+            this.code = inputOperation;
         }
 
         public static Operation fromCode(String code) {
             for (Operation op : Operation.values()) {
-                if (op.getInputOperation().equals(code)) {
+                if (op.getCode().equals(code)) {
                     return op;
                 }
             }
             throw new RuntimeException("Unknown operation code " + code);
         }
 
-        public String getInputOperation() {
-            return inputOperation;
-        }
-
-        public void setInputOperation(String inputOperation) {
-            this.inputOperation = inputOperation;
+        public String getCode() {
+            return code;
         }
     }
 }
