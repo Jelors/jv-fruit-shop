@@ -1,13 +1,13 @@
 # Fruit Shop
-Let's imagine that we have a fruit store. Every day in the store, there are a number of activities, 
-information about which is recorded in a workWithFile during the day.
-The current input workWithFile is sent to the program in CSV format (it is recommended to use standard libraries for parsing).
+Let's imagine that we have a fruit store. Every day in the store, there are a number of activities,
+information about which is recorded in a file during the day.
+The current input file is sent to the program in CSV format (it is recommended to use standard libraries for parsing).
 
 Your tasks are:
-- read data from the CSV workWithFile
-- process these data 
+- read data from the CSV file
+- process these data
 - generate a report based on processed data
-- write a report to a new CSV workWithFile
+- write a report to a new CSV file
 
 There are four activities at the store:
 ```text
@@ -18,32 +18,32 @@ There are four activities at the store:
 ```
 
 Let's check details of all types of activities:
-1. Balance. Fruit balance at the beginning of the work shift. The following line in the workWithFile will look like:
-    
+1. Balance. Fruit balance at the beginning of the work shift. The following line in the file will look like:
+
     ```text
        b,banana,100  
     ```
-   The line above means there are 100 bananas at the beginning of the work shift. 
-1. Supply. You are accepting new fruits from suppliers. The following line in the workWithFile will look like:
-    
+   The line above means there are 100 bananas at the beginning of the work shift.
+1. Supply. You are accepting new fruits from suppliers. The following line in the file will look like:
+
     ```text
        s,banana,100     
     ```
    The line above means you receive 100 bananas.
-1. Purchase. Buyers can visit your shop and buy some fruits. In this case, you will have the following line in the workWithFile:
-    
+1. Purchase. Buyers can visit your shop and buy some fruits. In this case, you will have the following line in the file:
+
     ```text
        p,banana,13  
     ```
    The line above means someone has bought 13 bananas.
-1. Return. Buyers can return you some fruits. In this case, you will have the following line in the workWithFile:
-    
+1. Return. Buyers can return you some fruits. In this case, you will have the following line in the file:
+
     ```text
        r,banana,10   
     ```
    The line above means someone has returned you 10 bananas.
 
-### Input workWithFile example
+### Input file example
 ```text
     type,fruit,quantity
     b,banana,20
@@ -56,8 +56,8 @@ Let's check details of all types of activities:
     s,banana,50
 ```
 
-### Expecting report workWithFile example
-We are expecting to see how many fruits are available today after the work shift in your Fruit store. 
+### Expecting report file example
+We are expecting to see how many fruits are available today after the work shift in your Fruit store.
 ```text
     fruit,quantity
     banana,152
@@ -65,7 +65,7 @@ We are expecting to see how many fruits are available today after the work shift
 ```
 The line above means you have 152 bananas, and 90 apples in your Fruit store after the work shift.
 
-**Hint: Think about creating some FruitTransaction service to store info from workWithFile line for more convenient data processing 
+**Hint: Think about creating some FruitTransaction model to store info from file line for more convenient data processing
 (this is only a recommendation, you can use other classes/approaches to solve this task at your discretion):**
 ```java
 public class FruitTransaction {
@@ -98,7 +98,7 @@ Also, here is an example of what the `main` method may look like:
 ```java
 public class Main {
     public static void main(String[] arg) {
-        // 1. Read the data from the input CSV workWithFile
+        // 1. Read the data from the input CSV file
         FileReader fileReader = new FileReaderImpl();
         List<String> inputReport = fileReader.read("reportToRead.csv");
 
@@ -122,7 +122,7 @@ public class Main {
         ReportGenerator reportGenerator = new ReportGeneratorImpl();
         String resultingReport = reportGenerator.getReport();
 
-        // 6. Write the received report into the destination workWithFile
+        // 6. Write the received report into the destination file
         FileWriter fileWriter = new FileWriterImpl();
         fileWriter.write(resultingReport, "finalReport.csv");
     }
@@ -134,14 +134,14 @@ public class Main {
 
 <details>
   <summary>Additional tips (IMPORTANT: before viewing, create a solution architecture and check it against these tips)</summary>
- 
- ![FruitShop Schema](https://mate-academy-images.s3.eu-central-1.amazonaws.com/Fruit_Shop_1_c3855912d4.png)
+
+![FruitShop Schema](https://mate-academy-images.s3.eu-central-1.amazonaws.com/Fruit_Shop_1_c3855912d4.png)
 
 You are presented with a diagram describing an algorithm for creating a project structure. Your task is to implement it.
 
 While carrying out this task, please pay attention to the following points:
 
-All service should be invoked from the main() method. In each service, you should have a method that returns a specific type of data and passes this data to the method of the next service. In this way, your service will be independent of each other, and your solution will adhere to SOLID principles. Moreover, such methods are easier to test. Think about what types of data the methods in each of the service should return.
+All services should be invoked from the main() method. In each service, you should have a method that returns a specific type of data and passes this data to the method of the next service. In this way, your services will be independent of each other, and your solution will adhere to SOLID principles. Moreover, such methods are easier to test. Think about what types of data the methods in each of the services should return.
 Remember the SOLID principles; think about which ones you might not be adhering to and how to fix this:
 - Single Responsibility — does each class/method perform one function?
 - Open/Closed — think about it: if there is a need to add functionality, will you need to change the logic of the class/methods?
@@ -187,8 +187,8 @@ public class UserServiceImpl implements UserService {
 ````
 Remember that your code will need to be tested, so try to anticipate and handle all invalid input data in advance.
 For example:
-1. Incorrect workWithFile path
-2. Incorrect data in the input workWithFile, for example, quantity less than zero or incorrect strategy
+1. Incorrect file path
+2. Incorrect data in the input file, for example, quantity less than zero or incorrect strategy
 3. Null parameters
 4. Providing the right names for your classes, methods, and variables is important. You can find examples here: [Link](https://mate-academy.github.io/style-guides/java/java.html#s5-naming)
 
