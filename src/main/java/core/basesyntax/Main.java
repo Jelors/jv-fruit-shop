@@ -6,12 +6,10 @@ import java.util.Map;
 import model.FruitTransaction;
 import service.CsvFileReader;
 import service.CsvFileWriter;
-import service.FruitDao;
 import service.ReportGenerator;
 import service.ShopService;
 import service.impl.CsvFileReaderImpl;
 import service.impl.CsvFileWriterImpl;
-import service.impl.FruitDaoImpl;
 import service.impl.ReportGeneratorImpl;
 import service.impl.ShopServiceImpl;
 import strategy.OperationHandler;
@@ -23,12 +21,11 @@ import strategy.impl.ReturnOperation;
 import strategy.impl.SupplyOperation;
 
 public class Main {
-    private static final String inputPath = "src/main/resources/input.csv";
-    private static final String reportPath = "src/main/resources/finalReport.csv";
+    private static final String INPUT_FILE = "src/main/resources/input.csv";
+    private static final String OUTPUT_FILE = "src/main/resources/finalReport.csv";
 
     public static void main(String[] args) {
         CsvFileReader reader = new CsvFileReaderImpl();
-        FruitDao fruitDao = new FruitDaoImpl();
 
         Map<FruitTransaction.Operation, OperationHandler> operationHandlers = new HashMap<>();
         operationHandlers.put(FruitTransaction.Operation.BALANCE, new BalanceOperation());
@@ -37,7 +34,7 @@ public class Main {
         operationHandlers.put(FruitTransaction.Operation.SUPPLY, new SupplyOperation());
         OperationStrategy operationStrategy = new OperationStrategyImpl(operationHandlers);
 
-        List<FruitTransaction> transactions = reader.read(inputPath, fruitDao);
+        List<String> transactions = reader.read(INPUT_FILE);
         ShopService shopService = new ShopServiceImpl(operationStrategy);
         shopService.process(transactions);
 
@@ -45,7 +42,6 @@ public class Main {
         String resultingReport = reportGenerator.getReport();
 
         CsvFileWriter fileWriter = new CsvFileWriterImpl();
-        fileWriter.write(resultingReport, reportPath);
+        fileWriter.write(resultingReport, OUTPUT_FILE);
     }
 }
-

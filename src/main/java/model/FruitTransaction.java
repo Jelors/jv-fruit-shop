@@ -65,7 +65,7 @@ public class FruitTransaction {
                     return op;
                 }
             }
-            throw new RuntimeException("Unknown operation code " + code);
+            throw new IllegalArgumentException("Unknown operation code " + code);
         }
 
         public String getCode() {

@@ -4,13 +4,15 @@ import model.FruitTransaction;
 import service.FruitDao;
 
 public class FruitDaoImpl implements FruitDao {
+    private static final String COMMA = ",";
+
     @Override
     public FruitTransaction getFromCsvData(String line) {
         if (line == null || line.isEmpty()) {
             throw new RuntimeException("Line cannot be null or empty");
         }
 
-        String[] fields = line.split(",");
+        String[] fields = line.split(COMMA);
         if (fields.length != 3) {
             throw new RuntimeException("Invalid CSV line (expected 3 fields): '" + line + "'");
         }
